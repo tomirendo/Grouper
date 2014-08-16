@@ -3,33 +3,45 @@ Grouper
 
 A python library for grouping objects together.
 
-```python
+
 import Grouper,datetime,random
 
-#### You can use Grouper.groupby just like itertools.groupby:
+You can use Grouper.groupby just like itertools.groupby:
+```python
 list([key,list(group)] for key,group in Grouper.groupby("abbbccd"))
 #[['a', ['a']], ['b', ['b', 'b', 'b']], ['c', ['c', 'c']], ['d', ['d']]]
-
+```
+as_iterable = True returns each group as a list
+```python
 ls = "aaabcdddef"
-#as_iterable = True returns each group as a list
 print list(Grouper.groupby(ls,as_iterable=False))
-#[('a', ['a', 'a', 'a']), ('b', ['b']), ('c', ['c']), ('d', ['d', 'd', 'd']), ('e', ['e']), ('f', ['f'])]
+#[('a', ['a', 'a', 'a']), ('b', ['b']), ('c', ['c']), 
+                ('d', ['d', 'd', 'd']), ('e', ['e']), ('f', ['f'])]
+```
 
-#the "relation" keyword allows comparing consecutive values
+the "relation" keyword allows comparing consecutive values
+```python
 Grouper.groupby(ls,relation=lambda x,y:ord(y) - ord(x) <3,as_iterable=False)
 #[['a', 'a', 'a', 'b', 'c', 'd', 'd', 'd', 'e', 'f', 'g'], ['j', 'k', 'l', 'm']]
+```
 
-#A cleaner way to find a relation is using Grouper.difference
+A cleaner way to find a relation is using Grouper.difference
+```python
 Grouper.groupby(ls,as_iterable= False, relation=Grouper.difference(3,key = ord))
 #[['a', 'a', 'a', 'b', 'c', 'd', 'd', 'd', 'e', 'f', 'g'], ['j', 'k', 'l', 'm']]
+```
 
-#The "compare_to_first" keyword collect groups by their relation to the first object in the group 
-Grouper.groupby(ls,as_iterable= False, relation=Grouper.difference(3,key = ord),compare_to_first= True)
+The "compare_to_first" keyword collect groups by their relation to the first object in the group 
+```python
+Grouper.groupby(ls,as_iterable= False, 
+                relation=Grouper.difference(3,key = ord),compare_to_first= True)
 #[['a', 'a', 'a', 'b', 'c'], ['d', 'd', 'd', 'e', 'f'], ['g'], ['j', 'k', 'l'], ['m']]
+```
 
-#Create a list of random dates
+Create a list of random dates
+```python
 list_of_dates = sorted(datetime.datetime.now() + \
-                    datetime.timedelta(minutes = random.randint(1,200000)) for i in range(10))
+            datetime.timedelta(minutes = random.randint(1,200000)) for i in range(10))
 
 list(Grouper.groupby(list_of_dates,
                     as_iterable=False,relation=Grouper.time_delta(days = 7)))
