@@ -19,6 +19,7 @@ print list(Grouper.groupby(ls,as_iterable=False))
 
 The "relation" keyword allows comparing consecutive values
 ```python
+ls = "aaabcdddefgjklm"
 Grouper.groupby(ls,relation=lambda x,y:ord(y) - ord(x) <3,as_iterable=False)
 #[['a', 'a', 'a', 'b', 'c', 'd', 'd', 'd', 'e', 'f', 'g'], ['j', 'k', 'l', 'm']]
 ```
