@@ -3,7 +3,7 @@ Grouper
 
 A python library for grouping objects together.
 
-'''python
+```python
 import Grouper,datetime,random
 
 #### You can use Grouper.groupby just like itertools.groupby:
@@ -24,4 +24,4 @@ print list(Grouper.groupby(ls,as_iterable= False, relation=Grouper.difference(3,
 list_of_dates = sorted(datetime.datetime.now() + datetime.timedelta(minutes = random.randint(1,200000)) for i in range(10))
 
 list(Grouper.groupby(list_of_dates,as_iterable=False,relation=Grouper.time_delta(days = 7)))
-'''
+```
