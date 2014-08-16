@@ -11,7 +11,7 @@ class groupby(object):
         else :
             self.relation_function = relation
             self.prevvalue = None
-            self.curvalue = next(self.it)
+            self.currvalue = next(self.it)
             self.it_ended = False
             self.cmp_to_first = compare_to_first
             
@@ -44,15 +44,19 @@ class groupby(object):
             self.currkey = self.keyfunc(self.currvalue)
 
     def _relation_grouper(self):
-        yield self.curvalue
-        self.prevvalue = self.curvalue
-        self.currvalue = next(self.it)
-        while self.relation_function(self.prevvalue,self.curvalue):
-            yield self.curvalue
+        yield self.currvalue
+        self.prevvalue = self.currvalue
+        try:
+            self.currvalue = next(self.it)
+        except StopIteration:
+            self.it_ended = True
+            raise StopIteration
+        while self.relation_function(self.prevvalue,self.currvalue):
+            yield self.currvalue
             if self.cmp_to_first is False:
-                self.prevvalue = self.curvalue
+                self.prevvalue = self.currvalue
             try :
-                self.curvalue = next(self.it)
+                self.currvalue = next(self.it)
             except StopIteration:
                 self.it_ended = True
                 raise StopIteration()
