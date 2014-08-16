@@ -22,3 +22,7 @@ def time_delta(*args,**kwargs):
     _delta = timedelta(*args,**kwargs)
 
     return difference(_delta,key = _key_func)
+
+def attrgetter(*args,**kwargs):
+    import operator
+    return operator.attrgetter(*arg,**kwargs)
