@@ -9,7 +9,7 @@ You can use Grouper.groupby just like itertools.groupby:
 list([key,list(group)] for key,group in Grouper.groupby("abbbccd"))
 #[['a', ['a']], ['b', ['b', 'b', 'b']], ['c', ['c', 'c']], ['d', ['d']]]
 ```
-as_iterable = True returns each group as a list
+'as_iterable = True' returns each group as a list
 ```python
 ls = "aaabcdddef"
 print list(Grouper.groupby(ls,as_iterable=False))
@@ -17,7 +17,7 @@ print list(Grouper.groupby(ls,as_iterable=False))
 #                ('d', ['d', 'd', 'd']), ('e', ['e']), ('f', ['f'])]
 ```
 
-the "relation" keyword allows comparing consecutive values
+The "relation" keyword allows comparing consecutive values
 ```python
 Grouper.groupby(ls,relation=lambda x,y:ord(y) - ord(x) <3,as_iterable=False)
 #[['a', 'a', 'a', 'b', 'c', 'd', 'd', 'd', 'e', 'f', 'g'], ['j', 'k', 'l', 'm']]
