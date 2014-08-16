@@ -26,3 +26,12 @@ def time_delta(*args,**kwargs):
 def attrgetter(*args,**kwargs):
     import operator
     return operator.attrgetter(*arg,**kwargs)
+
+def itemgetter(*args,**kwargs):
+    import operator
+    return operator.itemgetter(*args,**kwargs)
+
+def methodcaller(*args,**kwargs):
+    import operator
+    return operator.methodcaller(*args,**kwargs)
+
