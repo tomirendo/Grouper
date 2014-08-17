@@ -1,6 +1,6 @@
 def difference(max_difference,min_difference = None, attr = None, key = None):
     if attr:
-        _key_func = lambda x:getattr(x,attr)
+        _key_func = attrgetter(_attr)
     else :
         if key:
             _key_func = key
@@ -18,7 +18,8 @@ def time_delta(*args,**kwargs):
     
     from datetime import timedelta
     if kwargs.has_key("attr"):
-        _key_func = lambda x:getattr(x,kwargs.pop("attr"))
+        _attr = kwargs.pop("attr")
+        _key_func = attrgetter(_attr)
     else :
         _key_func = kwargs.pop("key",lambda x:x)
 
@@ -28,7 +29,7 @@ def time_delta(*args,**kwargs):
 
 def attrgetter(*args,**kwargs):
     import operator
-    return operator.attrgetter(*arg,**kwargs)
+    return operator.attrgetter(*args,**kwargs)
 
 def itemgetter(*args,**kwargs):
     import operator
@@ -56,7 +57,7 @@ def OR(*functions):
     return relation_function
 
 
-    
+
 
 
 
