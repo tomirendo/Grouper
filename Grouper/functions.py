@@ -38,3 +38,25 @@ def methodcaller(*args,**kwargs):
     import operator
     return operator.methodcaller(*args,**kwargs)
 
+
+def AND(*functions):
+    def relation_function(a,b):
+        for func in functions:
+            if not func(a,b):
+                return False
+        return True
+    return relation_function
+
+def OR(*functions):
+    def relation_function(a,b):
+        for func in functions:
+            if func(a,b):
+                return True
+        return False
+    return relation_function
+
+
+    
+
+
+
