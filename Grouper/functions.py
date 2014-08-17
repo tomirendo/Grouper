@@ -8,10 +8,10 @@ def difference(max_difference,min_difference = None, attr = None, key = None):
             _key_func = lambda x:x
     if min_difference:       
         def _relation(a,b):
-            return min_difference < _key_func(b) - _key_func(a) < max_difference
+            return min_difference <= _key_func(b) - _key_func(a) <= max_difference
     else :
         def _relation(a,b):
-            return _key_func(b) - _key_func(a) < difference
+            return _key_func(b) - _key_func(a) <= max_difference
     return _relation
 
 def time_delta(*args,**kwargs):
