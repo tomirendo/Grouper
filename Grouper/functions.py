@@ -1,3 +1,5 @@
+from operator import itemgetter,attrgetter,methodcaller
+
 def difference(max_difference,min_difference = None, attr = None, key = None):
     if attr:
         _key_func = attrgetter(attr)
@@ -26,19 +28,6 @@ def time_delta(*args,**kwargs):
     _delta = timedelta(*args,**kwargs)
 
     return difference(_delta,key = _key_func)
-
-def attrgetter(*args,**kwargs):
-    import operator
-    return operator.attrgetter(*args,**kwargs)
-
-def itemgetter(*args,**kwargs):
-    import operator
-    return operator.itemgetter(*args,**kwargs)
-
-def methodcaller(*args,**kwargs):
-    import operator
-    return operator.methodcaller(*args,**kwargs)
-
 
 def AND(*functions):
     def relation_function(a,b):
