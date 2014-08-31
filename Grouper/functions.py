@@ -1,6 +1,6 @@
 def difference(max_difference,min_difference = None, attr = None, key = None):
     if attr:
-        _key_func = attrgetter(_attr)
+        _key_func = attrgetter(attr)
     else :
         if key:
             _key_func = key
