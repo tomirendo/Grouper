@@ -19,7 +19,7 @@ def difference(max_difference,min_difference = None, attr = None, key = None):
 def time_delta(*args,**kwargs):
     
     from datetime import timedelta
-    if kwargs.has_key("attr"):
+    if "attr" in kwargs:
         _attr = kwargs.pop("attr")
         _key_func = attrgetter(_attr)
     else :
