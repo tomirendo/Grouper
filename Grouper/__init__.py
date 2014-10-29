@@ -1,2 +1,2 @@
-from Grouper import groupby
-from functions import *
+from .Grouper import groupby
+from .functions import *
